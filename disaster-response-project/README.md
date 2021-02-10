@@ -1,6 +1,35 @@
 # Disaster Response Pipeline Project
 
-### Instructions:
+### Project
+
+In this project, it was developed an end-to-end ML pipeline to analyze the Figure Eight's database that has informations about disaster messages.
+
+Some process were developed as: 
+1. Data Engineering - extract, transform and load data (figure eight database)
+2. ML pipeline - build a model using the disaster database
+3. Web Development - front-end that can classify a message
+
+### File Structure
+
+	- app
+	| - template
+	| |- master.html  # main page of web app
+	| |- go.html  # classification result page of web app
+	|- run.py  # Flask file that runs app
+
+	- data
+	|- disaster_categories.csv  # data to process 
+	|- disaster_messages.csv  # data to process
+	|- process_data.py
+	|- InsertDatabaseName.db   # database to save clean data to
+
+	- models
+	|- train_classifier.py
+	|- classifier.pkl  # saved model 
+
+	- README.md
+
+### Instructions during the project:
 1. Run the following commands in the project's root directory to set up your database and model.
 
     - To run ETL pipeline that cleans data and stores in database
