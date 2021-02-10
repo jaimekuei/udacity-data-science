@@ -13,19 +13,19 @@ Some process were developed as:
 
 	- app
 	| - template
-	| |- master.html  # main page of web app
-	| |- go.html  # classification result page of web app
-	|- run.py  # Flask file that runs app
+	| |- master.html
+	| |- go.html
+	|- run.py
 
 	- data
-	|- disaster_categories.csv  # data to process 
-	|- disaster_messages.csv  # data to process
+	|- disaster_categories.csv
+	|- disaster_messages.csv
 	|- process_data.py
-	|- InsertDatabaseName.db   # database to save clean data to
+	|- InsertDatabaseName.db
 
 	- models
 	|- train_classifier.py
-	|- classifier.pkl  # saved model 
+	|- classifier.pkl
 
 	- README.md
 
