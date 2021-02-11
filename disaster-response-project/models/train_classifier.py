@@ -1,5 +1,6 @@
 import sys
 import pandas as pd
+import numpy as np
 from sqlalchemy import create_engine
 
 # download necessary NLTK data
@@ -17,6 +18,7 @@ from sklearn.multioutput import MultiOutputClassifier
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import classification_report
+from sklearn.model_selection import GridSearchCV
 
 import pickle
 
@@ -81,18 +83,60 @@ def build_model(model_type):
     Input:
         model_type: select an input model type: RandomForestClassifier(), MultinomialNB(), SGDClassifier()
     Returns:
-        pipeline: Machine Learning pipeline with fit/predict methods
+        tunned_model: Machine Learning model tunned with GridSearch with fit/predict methods
     """
     
     if model_type == "RandomForestClassifier()":
         print("\tModel RandomForestClassifier Chosen")
         clf = MultiOutputClassifier(RandomForestClassifier())
+
+        #Normaliztion for tfidf
+        tfidf = ['l2', 'l1']
+        # Minimum number of samples required to split a node
+        min_samples_split = [2, 4]
+        # Minimum number of samples required at each leaf node
+        min_samples_leaf = [1, 2]
+
+        parameters = \
+            {
+            'tfidf__norm': tfidf,
+            'clf__estimator__min_samples_split': min_samples_split,
+            'clf__estimator__min_samples_leaf': min_samples_leaf
+            }
+
     elif model_type == "MultinomialNB()":
         print("\tModel MultinomialNB Chosen")
         clf = MultiOutputClassifier(MultinomialNB())
+
+        #Normaliztion for tfidf
+        tfidf = ['l2', 'l1']
+        # Number of trees in random forest
+        # n_estimators = [int(x) for x in np.linspace(start = 200, stop = 1000, num = 2)]
+        alpha = [1, 0.1, 0.01]
+
+        parameters = \
+            {
+            'tfidf__norm': tfidf,
+            'clf__estimator__alpha': alpha
+            }
+
     else:
         print("\tModel RandomForestClassifier Chosen")
         clf = MultiOutputClassifier(RandomForestClassifier())
+
+        #Normaliztion for tfidf
+        tfidf = ['l2', 'l1']
+        # Minimum number of samples required to split a node
+        min_samples_split = [2, 4]
+        # Minimum number of samples required at each leaf node
+        min_samples_leaf = [1, 2]
+
+        parameters = \
+            {
+            'tfidf__norm': tfidf,
+            'clf__estimator__min_samples_split': min_samples_split,
+            'clf__estimator__min_samples_leaf': min_samples_leaf
+            }
     
     pipeline = Pipeline(
         [
@@ -101,8 +145,8 @@ def build_model(model_type):
             ('clf', clf)
         ])
     
-    return pipeline
-
+    tunned_model = GridSearchCV(pipeline, parameters, verbose=10)
+    return tunned_model
 
 def evaluate_model(model, X_test, Y_test, category_names):
     """
