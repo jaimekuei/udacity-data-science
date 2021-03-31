@@ -58,6 +58,8 @@ The database has three main tables:
 
 1. **Is there a price difference in the different types of accommodation?**
 
+![Image 1](prices_per_accomodation_box_plot.png "Distribution of Prices")
+
 As we can see for Entire home/apt:
 - at least 50% of houses rent prices are less than 350,00
 - at least 75% of houses rent prices are less than 698,00 
@@ -84,11 +86,13 @@ As we can see Private Room and Shared Room are the cheapest prices for rent, the
 
 2. **How is the behavior of rental prices in the city of Rio de Janeiro during the year?**
 
+![Image 2](time_series_calendar.png "Time Series Price")
+
 It was notice that the price houses increases after the second semester of the year and has the hightest prices in Christmas and New Year!
 There are some spikes in prices during all the year, firstly the hypothesis it was because the prices can change when it's a weekend or weekday, but we found some differents evidences that's not true (in the next question).
 
 3. **How is the price behavior if separated by accommodation types?** 
 
+![Image 3](time_series_per_accomodation.png "Time Series Price - Types Accomodation")
+
 Different types of accomodations has differents behaviors in prices over the year, generally the Entire Home/Apt dictates the behavior of the prices, when we see the Hotel Room prices we notice that the price increases just after the Christmas and New Year. For the Private Room the prices maintain a stability with a slight decrease in price over the year and at last the Shared Room seems to have some outliers points that generates some spikes in prices.
-
-
